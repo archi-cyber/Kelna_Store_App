@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Bienvenue dans l'application kelna-store-Ap!</Text>
+      <Text>Bienvenue dans l'application kelna-store-App!</Text>
       <StatusBar style="auto" />
     </View>
   );
