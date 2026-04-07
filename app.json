@@ -3,8 +3,8 @@
     "name": "kelna-store-App",
     "slug": "kelna-store-App",
     "version": "1.0.0",
-    "update":{
-     "url": "https://u.expo.dev/Kelna-store-App"
+    "update": {
+      "url": "https://u.expo.dev/Kelna-store-App"
     },
     "runtimeVersion": {
       "policy": "appVersion"
@@ -19,7 +19,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.archidusprime.kelnastoreApp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -37,9 +41,6 @@
       }
     },
     "owner": "archidusprime",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
     "updates": {
       "url": "https://u.expo.dev/e10138ad-72b5-4dc2-a964-91be189a9e09"
     }
