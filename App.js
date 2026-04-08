@@ -1,20 +1,57 @@
+import React, { useEffect, useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { AuthProvider, useAuth } from './app/context/AuthContext';
+import { CartProvider } from './app/context/CartContext';
+import AppNavigator from './app/navigation/AppNavigator';
+import notificationService from './app/services/notificationService';
 
-export default function App() {
+function AppContent() {
+  const { isAuthenticated } = useAuth();
+  const notificationListener = useRef();
+  const responseListener = useRef();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      // Enregistrer pour les push notifications
+      notificationService.registerForPushNotifications();
+
+      // Notification reçue alors que l'app est ouverte
+      notificationListener.current = notificationService.addNotificationReceivedListener(
+        notification => {
+          console.log('Notification reçue:', notification);
+        }
+      );
+
+      // L'utilisateur a cliqué sur une notification
+      responseListener.current = notificationService.addNotificationResponseReceivedListener(
+        response => {
+          console.log('Notification cliquée:', response);
+          // Tu peux naviguer vers un écran spécifique ici
+        }
+      );
+    }
+
+    return () => {
+      notificationService.removeNotificationSubscription(notificationListener.current);
+      notificationService.removeNotificationSubscription(responseListener.current);
+    };
+  }, [isAuthenticated]);
+
   return (
-    <View style={styles.container}>
-      <Text>Bienvenue dans l'application kelna-store-App!</Text>
+    <NavigationContainer>
       <StatusBar style="auto" />
-    </View>
+      <AppNavigator />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <AuthProvider>
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
+    </AuthProvider>
+  );
+}
