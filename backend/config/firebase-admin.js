@@ -13,7 +13,7 @@ try {
 
   console.log('✅ Firebase Admin initialisé');
 } catch (error) {
-  console.warn('⚠️  Firebase Admin non configuré:', error.message);
+  console.warn('  Firebase Admin non configuré:', error.message);
   console.warn('   Les notifications push seront désactivées.');
 }
 
