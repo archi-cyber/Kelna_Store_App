@@ -5,6 +5,7 @@ require('dotenv').config();
 
 // Initialise la connexion MySQL (affiche le ✅ au démarrage)
 require('./config/db');
+require('./config/firebase-admin');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
