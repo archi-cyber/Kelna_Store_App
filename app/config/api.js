@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// ⚠️ IMPORTANT : Remplacez par l'IP de votre machine sur le réseau local
+//  IMPORTANT : Remplacez par l'IP de votre machine sur le réseau local
 // Pour trouver votre IP : 
 // - Windows : ipconfig
 // - Mac/Linux : ifconfig ou ip addr
